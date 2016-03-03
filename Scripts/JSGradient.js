@@ -5,7 +5,7 @@
             var MAX;
             var pixels;
             var width, height;       //create stars
-            var rate = 100;
+            var rate = 30;
             var xposition, yposition;
 
 
@@ -57,13 +57,16 @@
                     ctx.fillStyle = color;
                     ctx.fillRect(x, y, x + 1, y + 1);
                 }
-                this.From = function(){ return (this.fromX, this.fromY);}
+
+                this.FromX = function(){ return this.fromX;}
+                this.FromY = function(){ return this.fromY;}
             }
 
 
 
             function loop(){
                 setTimeout(function(){
+                    console.log("asdfasdf");
                     draw();
                     loop();
                 }, 1000/rate);
@@ -72,42 +75,62 @@
 
             function draw() {
                 var p = new Pixel(xposition, yposition);
-                var r = Math.floor((Math.random() * 4));
                 var c = 0;
 
-                while(c++ < 4){
-                    switch(r){
-                        case 0:
-                            if (!pixels[xposition + 1][yposition]){
-                                xposition += 1;
-                                p.Draw(xposition, yposition, getColor(r));
-                            }
-                            break;
-                        case 1:
-                            if (!pixels[xposition][yposition + 1]){
-                                yposition += 1;
-                                p.Draw(xposition, yposition, getColor(r));
-                            }
-                            break;
-                        case 2:
-                            if (!pixels[xposition - 1][yposition]){
-                                xposition -= 1;
-                                p.Draw(xposition, yposition, getColor(r));
-                            }
-                            break;
-                        case 3:
-                            if (!pixels[xposition][yposition-1]){
-                                yposition -= 1;
-                                p.Draw(xposition, yposition, getColor(r));
-                            }
-                            break;
-                    }
-                    r = (r + 1) % 4;
-                }
-                // if (c == 4) {
-                //     var back = backtrack();
-                // }
+                validLocation();
+                
+                pixels[xposition][yposition] = p;
+                p.Draw(xposition, yposition, getColor(xposition));
+            }
 
+            function validLocation() {
+                var f = false;
+                var xx = xposition;
+                var yy = yposition;
+                var pp;
+                while(!f){
+                    pp = pixels[xx][yy];
+                    if(pp){
+                        var c = 0;
+                        var r = Math.floor((Math.random() * 4));
+                        while(c++ < 4){
+                            switch(r){
+                                case 0:
+                                    if (!pixels[xposition + 1][yposition]){
+                                        xposition += 1;
+                                    }
+                                    break;
+                                case 1:
+                                    if (!pixels[xposition][yposition + 1]){
+                                        yposition += 1;
+                                    }
+                                    break;
+                                case 2:
+                                    if (!pixels[xposition - 1][yposition]){
+                                        xposition -= 1;
+                                    }
+                                    break;
+                                case 3:
+                                    if (!pixels[xposition][yposition-1]){
+                                        yposition -= 1;
+                                    }
+                                    break;
+                            }
+                            r = (r + 1) % 4;
+                        }
+                        if (c > 3){ //no found location
+                            xx = pp.FromX();
+                            yy = pp.FromY();
+                        } else {
+                            f = true;
+                        }
+                    } else {
+                        return;
+                    }
+                }
+
+                xposition = xx;
+                yposition = yy;
             }
 
             function getColor(n){
