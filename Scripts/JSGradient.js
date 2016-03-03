@@ -126,7 +126,7 @@
                 width = w;
                 height = h;
                 pixels = [];
-                for ( var i = 0; i < width; i++) arr[i] = Array(height);
+                for ( var i = 0; i < width; i++) pixels[i] = Array(height);
                 return pixels;
             }
         })(); 
