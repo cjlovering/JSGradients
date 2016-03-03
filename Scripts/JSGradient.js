@@ -42,8 +42,8 @@
                     //     clearTimeout(resizeId);
                     //     resizeId = setTimeout(onResizeDraw, 300);
                     // });
-                    xposition = width  * Math.random();
-                    yposition = height * Math.random();
+                    xposition = Math.floor(width  * Math.random());
+                    yposition = Math.floor(height * Math.random());
                     loop();
                 }
             });
