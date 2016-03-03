@@ -74,17 +74,32 @@
                 var p = new Pixel(xposition, yposition);
                 var r = Math.floor((Math.random() * 4));
                 var c = 0;
-                
+
                 while(c++ < 4){
                     switch(r){
                         case 0:
-                            if (!pixels[xposition][yposition])
+                            if (!pixels[xposition + 1][yposition]){
+                                xposition += 1;
+                                p.Draw(xposition, yposition, getColor(r));
+                            }
                             break;
                         case 1:
+                            if (!pixels[xposition][yposition + 1]){
+                                yposition += 1;
+                                p.Draw(xposition, yposition, getColor(r));
+                            }
                             break;
                         case 2:
+                            if (!pixels[xposition - 1][yposition]){
+                                xposition -= 1;
+                                p.Draw(xposition, yposition, getColor(r));
+                            }
                             break;
-                        case 3;
+                        case 3:
+                            if (!pixels[xposition][yposition-1]){
+                                yposition -= 1;
+                                p.Draw(xposition, yposition, getColor(r));
+                            }
                             break;
                     }
                     r = (r + 1) % 4;
@@ -111,7 +126,7 @@
                 width = w;
                 height = h;
                 pixels = [];
-                for ( var i = 0; i < width; i++) arr[i] = []
+                for ( var i = 0; i < width; i++) arr[i] = Array(height);
                 return pixels;
             }
         })(); 
