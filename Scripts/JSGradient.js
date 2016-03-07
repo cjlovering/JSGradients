@@ -5,7 +5,7 @@
             var MAX;
             var pixels;
             var width, height;       //create stars
-            var rate = 30;
+            var rate = 300;
             var xposition, yposition;
 
 
@@ -96,6 +96,7 @@
 
                 pixels[xposition][yposition] = p;
                 p.Draw(xposition, yposition, getColor(2));
+                console.log(p);
             }
 
             function validLocation() {
