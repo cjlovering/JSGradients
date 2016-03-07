@@ -53,7 +53,7 @@
                 
                     pixels[xposition][yposition] = p;
                     p.Draw(getColor(xposition), xposition, yposition);
-                    //loop();
+                    loop();
                 }
             });
 
@@ -90,7 +90,10 @@
                 var p = new Pixel(xposition, yposition);
                 
                 //validLocation();
-                
+                xposition = Math.floor(width  * Math.random());
+                yposition = Math.floor(height * Math.random());
+
+
                 pixels[xposition][yposition] = p;
                 p.Draw(xposition, yposition, getColor(2));
             }
