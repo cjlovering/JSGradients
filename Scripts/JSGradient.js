@@ -52,7 +52,7 @@
                     var c = 0;
                 
                     pixels[xposition][yposition] = p;
-                    p.Draw("#7FFF00", xposition, yposition);
+                    p.Draw(getColor(xposition), xposition, yposition);
                     //loop();
                 }
             });
@@ -89,7 +89,7 @@
             function paint() {
                 var p = new Pixel(xposition, yposition);
                 
-                validLocation();
+                //validLocation();
                 
                 pixels[xposition][yposition] = p;
                 p.Draw(xposition, yposition, getColor(2));
