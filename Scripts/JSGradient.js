@@ -53,7 +53,7 @@
                 
                     pixels[xposition][yposition] = p;
                     p.Draw("#7FFF00", xposition, yposition);
-                    loop();
+                    //loop();
                 }
             });
 
