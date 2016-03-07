@@ -18,8 +18,8 @@
                     ctx = canvas.getContext('2d');
 
                     configureCanvas();
-                    ctx.fillStyle = "#7FFF00";
-                    ctx.fillRect(0, 100, 221, 441);
+                    // ctx.fillStyle = "#7FFF00";
+                    // ctx.fillRect(0, 100, 221, 441);
                     // drawStars();
 
                     // canvas.addEventListener("mousemove", function(eventInfo) {
