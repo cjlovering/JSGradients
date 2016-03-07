@@ -63,12 +63,11 @@
                 this.fromY = fromY;
 
                 this.Draw = function(color, x, y){
-                    
-                  console.log("p draw");
+            
                   console.log(x,y);
                   // x = 1175;
                   // y = 260;
-                  ctx.fillStyle = "#FF0000";
+                  ctx.fillStyle = color;
                   ctx.fillRect(x,y,x+10,y+10);
                 }
 
