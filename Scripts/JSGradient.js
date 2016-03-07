@@ -18,7 +18,8 @@
                     ctx = canvas.getContext('2d');
 
                     configureCanvas();
-
+                    ctx.fillStyle = "#7FFF00";
+                    ctx.fillRect(0, 100, 221, 441);
                     // drawStars();
 
                     // canvas.addEventListener("mousemove", function(eventInfo) {
@@ -44,6 +45,14 @@
                     // });
                     xposition = Math.floor(width  * Math.random());
                     yposition = Math.floor(height * Math.random());
+
+
+                    console.log(xposition, yposition);
+                    var p = new Pixel(xposition, yposition);
+                    var c = 0;
+                
+                    pixels[xposition][yposition] = p;
+                    p.Draw("#7FFF00", xposition, yposition);
                     loop();
                 }
             });
@@ -54,8 +63,13 @@
                 this.fromY = fromY;
 
                 this.Draw = function(color, x, y){
-                    ctx.fillStyle = color;
-                    ctx.fillRect(x, y, x + 1, y + 1);
+                    
+                  console.log("p draw");
+                  console.log(x,y);
+                  // x = 1175;
+                  // y = 260;
+                  ctx.fillStyle = "#FF0000";
+                  ctx.fillRect(x,y,x+10,y+10);
                 }
 
                 this.FromX = function(){ return this.fromX;}
@@ -66,21 +80,19 @@
 
             function loop(){
                 setTimeout(function(){
-                    console.log("asdfasdf");
-                    draw();
+                    paint();
                     loop();
                 }, 1000/rate);
             }
 
 
-            function draw() {
+            function paint() {
                 var p = new Pixel(xposition, yposition);
-                var c = 0;
-
+                
                 validLocation();
                 
                 pixels[xposition][yposition] = p;
-                p.Draw(xposition, yposition, getColor(xposition));
+                p.Draw(xposition, yposition, getColor(2));
             }
 
             function validLocation() {
@@ -89,6 +101,7 @@
                 var yy = yposition;
                 var pp;
                 while(!f){
+                    console.log("!f");
                     pp = pixels[xx][yy];
                     if(pp){
                         var c = 0;
@@ -98,27 +111,31 @@
                                 case 0:
                                     if (!pixels[xposition + 1][yposition]){
                                         xposition += 1;
+                                        c = 9;
                                     }
                                     break;
                                 case 1:
                                     if (!pixels[xposition][yposition + 1]){
                                         yposition += 1;
+                                        c = 9;
                                     }
                                     break;
                                 case 2:
                                     if (!pixels[xposition - 1][yposition]){
                                         xposition -= 1;
+                                        c = 9;
                                     }
                                     break;
                                 case 3:
                                     if (!pixels[xposition][yposition-1]){
                                         yposition -= 1;
+                                        c = 9;
                                     }
                                     break;
                             }
                             r = (r + 1) % 4;
                         }
-                        if (c > 3){ //no found location
+                        if (c < 6){ //no found location
                             xx = pp.FromX();
                             yy = pp.FromY();
                         } else {
