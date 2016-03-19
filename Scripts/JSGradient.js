@@ -5,8 +5,30 @@
             var MAX;
             var pixels;
             var width, height;       //create stars
-            var rate = 300;
+            var rate = 1000000;
+            var count = 0;
             var xposition, yposition;
+            var ffx, ffy;
+
+            var boost = 10;
+
+            var start = 'FFA17F';
+            var end   = '00223E';
+            var sr, sg, sb, er, eg, eb, cr, cg, cb, shiftr, shiftg, shiftb;
+
+            var count = 0;
+            var finish;
+            // #B3FFAB  - light blue
+            //  #00223E - pink
+
+            //Colour 1: #FFA17F
+            //Colour 2: #00223E
+
+
+//Endless River
+//Colour 1: #43cea2
+//Colour 2: #185a9d
+
 
 
             $(document).ready(function(){
@@ -18,6 +40,9 @@
                     ctx = canvas.getContext('2d');
 
                     configureCanvas();
+                    configureColor(start, end);
+                    finish = width * height;
+
                     // ctx.fillStyle = "#7FFF00";
                     // ctx.fillRect(0, 100, 221, 441);
                     // drawStars();
@@ -43,16 +68,7 @@
                     //     clearTimeout(resizeId);
                     //     resizeId = setTimeout(onResizeDraw, 300);
                     // });
-                    xposition = Math.floor(width  * Math.random());
-                    yposition = Math.floor(height * Math.random());
-
-
-                    console.log(xposition, yposition);
-                    var p = new Pixel(xposition, yposition);
-                    var c = 0;
-                
-                    pixels[xposition][yposition] = p;
-                    p.Draw(getColor(xposition), xposition, yposition);
+                    
                     loop();
                 }
             });
@@ -63,79 +79,172 @@
                 this.fromY = fromY;
 
                 this.Draw = function(color, x, y){
-            
-                  console.log(x,y);
-                  // x = 1175;
-                  // y = 260;
-                  ctx.fillStyle = color;
-                  ctx.fillRect(x,y,x+10,y+10);
+                  ctx.fillStyle = nextColor();
+                  ctx.fillRect(x,y,1,1);
                 }
 
-                this.FromX = function(){ return this.fromX;}
-                this.FromY = function(){ return this.fromY;}
+                this.FromXX = function(x){ this.fromX = x;}
+                this.FromYY = function(y){ this.fromY = y;}
+                this.FromX =  function(){ return this.fromX;}
+                this.FromY =  function(){ return this.fromY;}
             }
 
 
 
             function loop(){
                 setTimeout(function(){
-                    paint();
+                  
+                    for(var i = 0; i < boost; i++)
+                    {
+                        paint();
+                        count += 1;
+                        if (count >= finish){
+                            alert("restarting");
+                        }
+                    }
+
                     loop();
-                }, 1000/rate);
+                }, 0);
             }
 
 
             function paint() {
                 var p = new Pixel(xposition, yposition);
-                
-                //validLocation();
-                xposition = Math.floor(width  * Math.random());
-                yposition = Math.floor(height * Math.random());
-
-
+                //xposition = Math.floor(width  * Math.random());
+                //yposition = Math.floor(height * Math.random());
+                p = setValidLocation(p);
                 pixels[xposition][yposition] = p;
-                p.Draw(xposition, yposition, getColor(2));
-                console.log(p);
+                p.Draw(getColor(xposition), xposition, yposition);
             }
 
-            function validLocation() {
+            function setValidLocation(p) {
+                var xx = xposition;
+                var yy = yposition;
+                var xxx, yyy;
+                var pp;
+
+                while(true)
+                {
+
+                    pp = pixels[xx][yy];
+                    
+                    if(pp == "EMPTY")
+                    {
+                        alert("Somehow the current is empty.");
+                        //xposition = Math.floor(width  * Math.random());
+                        //yposition = Math.floor(height * Math.random());
+                        return;
+                    }
+                    var c = 0;
+                    var r = Math.floor((Math.random() * 4));
+                    while(c < 4)
+                    {    
+                        switch(r)
+                        {
+                            case 0:
+                                if ((xx + 1 < width) && pixels[xx + 1][yy] == "EMPTY"){
+                                    xxx = xx;
+                                    yyy = yy;
+                                    xx += 1;
+                                    c = 9;
+                                }
+                                break;
+                            case 1:
+                                if ((yy + 1 < height) && pixels[xx][yy + 1] == "EMPTY"){
+                                    xxx = xx;
+                                    yyy = yy;
+                                    yy += 1;
+                                    c = 9;
+                                    }
+                                break;
+                            case 2:
+                                if ((xx - 1 >= 0) && pixels[xx - 1][yy] == "EMPTY"){
+                                    xxx = xx;
+                                    yyy = yy;
+                                    xx -= 1;
+                                    c = 9;
+                                }
+                                break;
+                            case 3:
+                                if ((yy - 1 >= 0) && pixels[xx][yy - 1] == "EMPTY"){
+                                    xxx = xx;
+                                    yyy = yy;
+                                    yy -= 1;
+                                    c = 9;
+                               }
+                               break;
+                        }
+                        c += 1;
+                        r = (r + 1) % 4;
+                    }
+                        
+                    if (c < 6)
+                    { //no found location
+                        xx = pp.FromX();
+                        yy = pp.FromY();
+                        if (xx == ffx && yy == ffy)
+                        {
+                            alert("back to start.  width height" + width + "  " + height);
+
+                            xposition = Math.floor(width  * Math.random());
+                            yposition = Math.floor(height * Math.random());
+                            ffx = xposition;
+                            ffy = yposition;
+                            p.FromXX(ffx);
+                            p.FromYY(ffy);
+                            return p;
+                        }
+                    } 
+                    else 
+                    {
+                        xposition = xx;
+                        yposition = yy;
+                        p.FromXX(xxx); //is this correct = pp.FromX();
+                        p.FromYY(yyy);
+                        return p;
+                    }
+                } 
+            }
+
+/*
+function validLocation() {
                 var f = false;
                 var xx = xposition;
                 var yy = yposition;
                 var pp;
                 while(!f){
-                    console.log("!f");
                     pp = pixels[xx][yy];
                     if(pp){
                         var c = 0;
                         var r = Math.floor((Math.random() * 4));
-                        while(c++ < 4){
+                        while(c < 4){
                             switch(r){
                                 case 0:
-                                    if (!pixels[xposition + 1][yposition]){
+                                    if (pixels[xposition + 1][yposition] == "EMPTY"){
                                         xposition += 1;
                                         c = 9;
                                     }
                                     break;
                                 case 1:
-                                    if (!pixels[xposition][yposition + 1]){
+                                    if (pixels[xposition][yposition + 1] == "EMPTY"){
                                         yposition += 1;
                                         c = 9;
                                     }
                                     break;
                                 case 2:
-                                    if (!pixels[xposition - 1][yposition]){
+                                    if (pixels[xposition - 1][yposition] == "EMPTY"){
                                         xposition -= 1;
                                         c = 9;
                                     }
                                     break;
                                 case 3:
-                                    if (!pixels[xposition][yposition-1]){
+                                    if (pixels[xposition][yposition-1] == "EMPTY"){
                                         yposition -= 1;
                                         c = 9;
                                     }
                                     break;
                             }
+                            c += 1;
                             r = (r + 1) % 4;
                         }
                         if (c < 6){ //no found location
@@ -149,14 +258,65 @@
                     }
                 }
 
-                xposition = xx;
-                yposition = yy;
+                // xposition = xx;
+                // yposition = yy;
+            }
+*/
+
+            function nextColor(){
+                //to start we'll one at a time
+                if (cr != er)
+                {
+                    cr += shiftr;
+                }
+                else if (cg != eg) 
+                {
+                    cg += shiftg;
+                }
+                else if (cb != eb)
+                {
+                    cb += shiftb;                    
+                }
+                else
+                {
+                    cr = sr;
+                    cg = sg;
+                    cb = sb;
+                }
+                return rgb(cr, cg, cb);
+            }
+
+            function rgb(r, g, b){
+                return ["rgb(",r,",",g,",",b,")"].join("");
             }
 
             function getColor(n){
                 var colors    = [ "#ccff66", "#FFD700","#66ccff", "#ff6fcf", "#ff6666", "#F70000", "#D1FF36", "#7FFF00", "#72E6DA", "#1FE3C7", "#4DF8FF", "#0276FD", "#FF00FF"];
                 n %= colors.length;
                 return colors[n];
+            }
+
+            function configureColor(start, end)
+            {
+                start = parseInt(start, 16);
+                end   = parseInt(end, 16);
+                //sr, sg, sb
+                sr = (start >> 16) & 0xFF;
+                sg = (start >> 8)  & 0xFF;
+                sb = (start)       & 0xFF;
+                //cr, cg. cb
+                cr = sr;
+                cg = sg;
+                cb = sb;
+                //er, eb, eg
+                er = (end >> 16) & 0xFF;
+                eg = (end >> 8)  & 0xFF;
+                eb = (end)       & 0xFF;
+
+                //shiftr, shiftg, shiftb
+                shiftr = (er > sr) ? 1 : -1;
+                shiftg = (eg > sg) ? 1 : -1;
+                shiftb = (eb > sb) ? 1 : -1;
             }
 
 
@@ -170,6 +330,23 @@
                 height = h;
                 pixels = [];
                 for ( var i = 0; i < width; i++) pixels[i] = Array(height);
+                for ( var i = 0; i < width; i++){
+                     for ( var j = 0; j < height; j++){
+                        pixels[i][j] = "EMPTY";
+                     }
+                }
+
+                /* getting things restarted */
+                xposition = Math.floor(width  * Math.random());
+                yposition = Math.floor(height * Math.random());
+                ffx = xposition;
+                ffy = yposition;
+                var p = new Pixel(xposition, yposition);
+                var c = 0;
+                
+                pixels[xposition][yposition] = p;
+                p.Draw(getColor(xposition), xposition, yposition);
+
                 return pixels;
             }
         })(); 
