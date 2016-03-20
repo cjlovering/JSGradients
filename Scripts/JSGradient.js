@@ -10,10 +10,10 @@
             var xposition, yposition;
             var ffx, ffy;
 
-            var boost = 10;
+            var boost = 1000;
 
-            var start = 'FFA17F';
-            var end   = '00223E';
+            var start = '0000FF';
+            var end   = '88FF00';
             var sr, sg, sb, er, eg, eb, cr, cg, cb, shiftr, shiftg, shiftb;
 
             var count = 0;
@@ -30,6 +30,8 @@
 //Colour 2: #185a9d
 
 
+
+            
 
             $(document).ready(function(){
 
@@ -68,7 +70,7 @@
                     //     clearTimeout(resizeId);
                     //     resizeId = setTimeout(onResizeDraw, 300);
                     // });
-                    
+
                     loop();
                 }
             });
@@ -92,14 +94,18 @@
 
 
             function loop(){
-                setTimeout(function(){
+                var timer = setTimeout(function(){
                   
                     for(var i = 0; i < boost; i++)
                     {
                         paint();
                         count += 1;
                         if (count >= finish){
-                            alert("restarting");
+                            alert("finished!");
+                            ctx.clearRect(0, 0, width, height);
+                            configureCanvas();
+                            count = 0;
+                            break;
                         }
                     }
 
@@ -130,7 +136,6 @@
                     
                     if(pp == "EMPTY")
                     {
-                        alert("Somehow the current is empty.");
                         //xposition = Math.floor(width  * Math.random());
                         //yposition = Math.floor(height * Math.random());
                         return;
@@ -184,15 +189,9 @@
                         yy = pp.FromY();
                         if (xx == ffx && yy == ffy)
                         {
-                            alert("back to start.  width height" + width + "  " + height);
-
-                            xposition = Math.floor(width  * Math.random());
-                            yposition = Math.floor(height * Math.random());
-                            ffx = xposition;
-                            ffy = yposition;
-                            p.FromXX(ffx);
-                            p.FromYY(ffy);
-                            return p;
+                            ctx.clearRect(0, 0, width, height);
+                            count = 0;
+                            return configureCanvas();                   
                         }
                     } 
                     else 
@@ -205,63 +204,6 @@
                     }
                 } 
             }
-
-/*
-function validLocation() {
-                var f = false;
-                var xx = xposition;
-                var yy = yposition;
-                var pp;
-                while(!f){
-                    pp = pixels[xx][yy];
-                    if(pp){
-                        var c = 0;
-                        var r = Math.floor((Math.random() * 4));
-                        while(c < 4){
-                            switch(r){
-                                case 0:
-                                    if (pixels[xposition + 1][yposition] == "EMPTY"){
-                                        xposition += 1;
-                                        c = 9;
-                                    }
-                                    break;
-                                case 1:
-                                    if (pixels[xposition][yposition + 1] == "EMPTY"){
-                                        yposition += 1;
-                                        c = 9;
-                                    }
-                                    break;
-                                case 2:
-                                    if (pixels[xposition - 1][yposition] == "EMPTY"){
-                                        xposition -= 1;
-                                        c = 9;
-                                    }
-                                    break;
-                                case 3:
-                                    if (pixels[xposition][yposition-1] == "EMPTY"){
-                                        yposition -= 1;
-                                        c = 9;
-                                    }
-                                    break;
-                            }
-                            c += 1;
-                            r = (r + 1) % 4;
-                        }
-                        if (c < 6){ //no found location
-                            xx = pp.FromX();
-                            yy = pp.FromY();
-                        } else {
-                            f = true;
-                        }
-                    } else {
-                        return;
-                    }
-                }
-
-                // xposition = xx;
-                // yposition = yy;
-            }
-*/
 
             function nextColor(){
                 //to start we'll one at a time
@@ -325,9 +267,13 @@ function validLocation() {
                 var w = $(window).width();
 
                 canvas.width = w;
-                canvas.height = h; 
+                canvas.height = h;
+
                 width = w;
                 height = h;
+
+                //width = canvas.width;
+                //height = canvas.height;
                 pixels = [];
                 for ( var i = 0; i < width; i++) pixels[i] = Array(height);
                 for ( var i = 0; i < width; i++){
@@ -347,17 +293,6 @@ function validLocation() {
                 pixels[xposition][yposition] = p;
                 p.Draw(getColor(xposition), xposition, yposition);
 
-                return pixels;
+                return p;
             }
         })(); 
-
-
-// ublic static Color Lighten(Color inColor, double inAmount)
-// {
-//   return Color.FromArgb(
-//     inColor.A,
-//     (int) Math.Min(255, inColor.R + 255 * inAmount),
-//     (int) Math.Min(255, inColor.G + 255 * inAmount),
-//     (int) Math.Min(255, inColor.B + 255 * inAmount) );
-// }
-// */
