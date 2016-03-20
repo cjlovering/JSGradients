@@ -12,7 +12,7 @@
             var tx, ty;
 
 
-            var boost = 100;
+            var boost = 500;
 
             var start = '0000FF';
             var end   = '88FF00';
@@ -42,7 +42,8 @@
                 if (canvas.getContext){
                     
                     ctx = canvas.getContext('2d');
-
+                    tx = Math.floor((Math.random() * (width)));
+                    ty = Math.floor((Math.random() * (height)));
                     configureCanvas();
                     configureColor(start, end);
                     finish = width * height;
@@ -51,17 +52,15 @@
                     // ctx.fillRect(0, 100, 221, 441);
                     // drawStars();
 
-                    canvas.addEventListener("mousemove", function(eventInfo) {
-                        tx = eventInfo.offsetX || eventInfo.layerX;
-                        ty = eventInfo.offsetY || eventInfo.layerY;
-                    });
-                    tx = 50;
-                    ty = 50;
+                    // canvas.addEventListener("mousemove", function(eventInfo) {
+
+                    // });
                     // canvas.addEventListener("mouseup", function(eventInfo){
-                    //     //may want to do more here ... EXPLODE
                     //     tx = eventInfo.offsetX || eventInfo.layerX;
                     //     ty = eventInfo.offsetY || eventInfo.layerY;
-                    //     console.log(tx, ty);
+
+                    //     tx = Math.floor((Math.random() * (width - tx)) + tx);
+                    //     ty = Math.floor((Math.random() * (height - ty)) + ty);
                     // });
 
                     // canvas.addEventListener("mouseout", function(eventInfo){
@@ -154,28 +153,29 @@
                     var c = 0;
                     var r = Math.floor((Math.random() * 4));
                     //40 40 10 10
-                    var fx, fy;
+                    // var fx, fy;
 
-                    if (xx + 1 < tx){
-                        fx = 0;
-                    } else {
-                        fx = 2;
-                    }
+                    // if (xx + 1 < tx){
+                    //     fx = 0;
+                    // } else {
+                    //     fx = 2;
+                    // }
 
-                    if (yy + 1 < ty){
-                        fy = 1;
-                    } else {
-                        fy = 3;
-                    }
+                    // if (yy + 1 < ty){
+                    //     fy = 1;
+                    // } else {
+                    //     fy = 3;
+                    // }
 
-                    var r1 = Math.floor((Math.random() * 100));
-                    c = (r1 < 80) ? fx : -1;
-                    c = (r1 < 40) ? fx : fy;
+                    // var r1 = Math.floor((Math.random() * 100));
+                    // r = (r1 < 50) ? fx : -1;
+                    // r = (r1 < 25) ? fx : fy;
 
-                    if (c == -1){
-                        c =  Math.floor((Math.random() * 4));
-                    }
-
+                    // if (r == -1){
+                    //     r =  Math.floor((Math.random() * 4));
+                    // }
+                    r = Math.floor((Math.random() * 4));
+                    //40 40 10 10
                     while(c < 4)
                     {    
                         switch(r)
@@ -226,9 +226,17 @@
                         cg = pp.FromG();
                         if (xx == ffx && yy == ffy)
                         {
-                            ctx.clearRect(0, 0, width, height);
-                            count = 0;
-                            return configureCanvas();                   
+                            alert("start");
+                            xposition = Math.floor(width  * Math.random());
+                            yposition = Math.floor(height * Math.random());
+                            ffx = xposition;
+                            ffy = yposition;
+                            p.FromXX(ffx);
+                            p.FromYY(ffy);
+                            return p;
+                            //ctx.clearRect(0, 0, width, height);
+                            //count = 0;
+                            //return configureCanvas();                   
                         }
                     } 
                     else 
