@@ -226,7 +226,6 @@
                         cg = pp.FromG();
                         if (xx == ffx && yy == ffy)
                         {
-                            alert("start");
                             xposition = Math.floor(width  * Math.random());
                             yposition = Math.floor(height * Math.random());
                             ffx = xposition;
