@@ -1,11 +1,8 @@
 (function(){
 
             var canvas, ctx;
-            var resizeId;
-            var MAX;
             var pixels;
             var width, height;       //create stars
-            var rate = 1000000;
             var count = 0;
             var xposition, yposition;
             var ffx, ffy;
@@ -42,11 +39,8 @@
                 if (canvas.getContext){
                     
                     ctx = canvas.getContext('2d');
-                    tx = Math.floor((Math.random() * (width)));
-                    ty = Math.floor((Math.random() * (height)));
                     configureCanvas();
                     configureColor(start, end);
-                    finish = width * height;
 
                     // ctx.fillStyle = "#7FFF00";
                     // ctx.fillRect(0, 100, 221, 441);
@@ -113,8 +107,11 @@
                         count += 1;
                         if (count >= finish){
                             ctx.clearRect(0, 0, width, height);
+                            randomColor();
+                            //configureColor('43cea2', '000FFF');//'43cea2', '000FFF'
+
                             configureCanvas();
-                            count = 0;
+                            count = 1;
                             break;
                         }
                     }
@@ -298,11 +295,38 @@
                 er = (end >> 16) & 0xFF;
                 eg = (end >> 8)  & 0xFF;
                 eb = (end)       & 0xFF;
+                console.log(cr, cg, cb);
 
                 //shiftr, shiftg, shiftb
                 shiftr = (er > sr) ? 1 : -1;
                 shiftg = (eg > sg) ? 1 : -1;
                 shiftb = (eb > sb) ? 1 : -1;
+            }
+
+            function randomColor()
+            {
+                //start = parseInt(start, 16);
+                //end   = parseInt(end, 16);
+                //sr, sg, sb
+
+                sr = Math.floor(Math.random() * 255);
+                sg = Math.floor(Math.random() * 255);
+                sb = Math.floor(Math.random() * 255);
+                //cr, cg. cb
+                cr = sr;
+                cg = sg;
+                cb = sb;
+                //er, eb, eg
+                er = Math.floor(Math.random() * 255);
+                eg = Math.floor(Math.random() * 255);
+                eb = Math.floor(Math.random() * 255);
+
+                //shiftr, shiftg, shiftb
+                shiftr = (er > sr) ? 1 : -1;
+                shiftg = (eg > sg) ? 1 : -1;
+                shiftb = (eb > sb) ? 1 : -1;
+                console.log(cr, cg, cb);
+
             }
 
 
@@ -316,6 +340,7 @@
                 width = w;
                 height = h;
 
+                finish = width * height;
                 //width = canvas.width;
                 //height = canvas.height;
                 pixels = [];
