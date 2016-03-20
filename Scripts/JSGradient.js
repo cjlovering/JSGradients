@@ -9,8 +9,10 @@
             var count = 0;
             var xposition, yposition;
             var ffx, ffy;
+            var tx, ty;
 
-            var boost = 1000;
+
+            var boost = 100;
 
             var start = '0000FF';
             var end   = '88FF00';
@@ -49,16 +51,17 @@
                     // ctx.fillRect(0, 100, 221, 441);
                     // drawStars();
 
-                    // canvas.addEventListener("mousemove", function(eventInfo) {
-                    //     seek = true;
-                    //     target = {x: eventInfo.offsetX || eventInfo.layerX, y:eventInfo.offsetY || eventInfo.layerY};
-                    // });
-
+                    canvas.addEventListener("mousemove", function(eventInfo) {
+                        tx = eventInfo.offsetX || eventInfo.layerX;
+                        ty = eventInfo.offsetY || eventInfo.layerY;
+                    });
+                    tx = 50;
+                    ty = 50;
                     // canvas.addEventListener("mouseup", function(eventInfo){
                     //     //may want to do more here ... EXPLODE
-                    //     seek = false;
-                    //     lagger = 150;
-                    //     target = {x: eventInfo.offsetX || eventInfo.layerX, y:eventInfo.offsetY || eventInfo.layerY};
+                    //     tx = eventInfo.offsetX || eventInfo.layerX;
+                    //     ty = eventInfo.offsetY || eventInfo.layerY;
+                    //     console.log(tx, ty);
                     // });
 
                     // canvas.addEventListener("mouseout", function(eventInfo){
@@ -79,16 +82,25 @@
             function Pixel(fromX, fromY) {
                 this.fromX = fromX;
                 this.fromY = fromY;
+                this.r = 0;
+                this.g = 0;
+                this.b = 0;
 
-                this.Draw = function(color, x, y){
-                  ctx.fillStyle = nextColor();
-                  ctx.fillRect(x,y,1,1);
+                this.Draw = function(x, y){
+                    this.r = cr;
+                    this.g = cg;
+                    this.b = cb;
+                    ctx.fillStyle = nextColor();
+                    ctx.fillRect(x,y,1,1);
                 }
 
                 this.FromXX = function(x){ this.fromX = x;}
                 this.FromYY = function(y){ this.fromY = y;}
                 this.FromX =  function(){ return this.fromX;}
                 this.FromY =  function(){ return this.fromY;}
+                this.FromR =  function(){ return this.r;}
+                this.FromG =  function(){ return this.g;}
+                this.FromB =  function(){ return this.b;}
             }
 
 
@@ -101,7 +113,6 @@
                         paint();
                         count += 1;
                         if (count >= finish){
-                            alert("finished!");
                             ctx.clearRect(0, 0, width, height);
                             configureCanvas();
                             count = 0;
@@ -120,7 +131,7 @@
                 //yposition = Math.floor(height * Math.random());
                 p = setValidLocation(p);
                 pixels[xposition][yposition] = p;
-                p.Draw(getColor(xposition), xposition, yposition);
+                p.Draw(xposition, yposition);
             }
 
             function setValidLocation(p) {
@@ -142,6 +153,29 @@
                     }
                     var c = 0;
                     var r = Math.floor((Math.random() * 4));
+                    //40 40 10 10
+                    var fx, fy;
+
+                    if (xx + 1 < tx){
+                        fx = 0;
+                    } else {
+                        fx = 2;
+                    }
+
+                    if (yy + 1 < ty){
+                        fy = 1;
+                    } else {
+                        fy = 3;
+                    }
+
+                    var r1 = Math.floor((Math.random() * 100));
+                    c = (r1 < 80) ? fx : -1;
+                    c = (r1 < 40) ? fx : fy;
+
+                    if (c == -1){
+                        c =  Math.floor((Math.random() * 4));
+                    }
+
                     while(c < 4)
                     {    
                         switch(r)
@@ -187,6 +221,9 @@
                     { //no found location
                         xx = pp.FromX();
                         yy = pp.FromY();
+                        cr = pp.FromR();
+                        cb = pp.FromB();
+                        cg = pp.FromG();
                         if (xx == ffx && yy == ffy)
                         {
                             ctx.clearRect(0, 0, width, height);
@@ -291,7 +328,7 @@
                 var c = 0;
                 
                 pixels[xposition][yposition] = p;
-                p.Draw(getColor(xposition), xposition, yposition);
+                p.Draw(xposition, yposition);
 
                 return p;
             }
