@@ -147,34 +147,25 @@
                         //yposition = Math.floor(height * Math.random());
                         return;
                     }
-                    var c = 0;
-                    var r = Math.floor((Math.random() * 4));
-                    //40 40 10 10
-                    // var fx, fy;
+                    var r;
+                    var openspots = [];
+                    if ((xx + 1 < width) && pixels[xx + 1][yy] == "EMPTY"){
+                        openspots.push(0);
+                    }
+                    if ((yy + 1 < height) && pixels[xx][yy + 1] == "EMPTY"){
+                        openspots.push(1);
+                    }
+                    if ((xx - 1 >= 0) && pixels[xx - 1][yy] == "EMPTY"){
+                        openspots.push(2);
+                    }
+                    if ((yy - 1 >= 0) && pixels[xx][yy - 1] == "EMPTY"){
+                        openspots.push(3);
+                    }
 
-                    // if (xx + 1 < tx){
-                    //     fx = 0;
-                    // } else {
-                    //     fx = 2;
-                    // }
 
-                    // if (yy + 1 < ty){
-                    //     fy = 1;
-                    // } else {
-                    //     fy = 3;
-                    // }
-
-                    // var r1 = Math.floor((Math.random() * 100));
-                    // r = (r1 < 50) ? fx : -1;
-                    // r = (r1 < 25) ? fx : fy;
-
-                    // if (r == -1){
-                    //     r =  Math.floor((Math.random() * 4));
-                    // }
-                    r = Math.floor((Math.random() * 4));
-                    //40 40 10 10
-                    while(c < 4)
-                    {    
+                    if ( openspots.length > 0 ){
+                        r = openspots[Math.floor((Math.random() * openspots.length))];
+                     
                         switch(r)
                         {
                             case 0:
@@ -210,12 +201,15 @@
                                }
                                break;
                         }
-                        c += 1;
-                        r = (r + 1) % 4;
-                    }
                         
-                    if (c < 6)
-                    { //no found location
+                        xposition = xx;
+                        yposition = yy;
+                        p.FromXX(xxx); //is this correct = pp.FromX();
+                        p.FromYY(yyy);
+                        return p;
+                    } 
+                    else 
+                    {
                         xx = pp.FromX();
                         yy = pp.FromY();
                         cr = pp.FromR();
@@ -234,14 +228,6 @@
                             //count = 0;
                             //return configureCanvas();                   
                         }
-                    } 
-                    else 
-                    {
-                        xposition = xx;
-                        yposition = yy;
-                        p.FromXX(xxx); //is this correct = pp.FromX();
-                        p.FromYY(yyy);
-                        return p;
                     }
                 } 
             }
