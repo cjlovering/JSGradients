@@ -338,7 +338,7 @@ function loop(r){
             }
         }
       }
-      loop();
+      loop(r);
   }, 0); //ractive.get... r.get('rate')
 }
 })();
