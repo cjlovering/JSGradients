@@ -253,7 +253,6 @@ function configureColor(start, end)
     er = (end >> 16) & 0xFF;
     eg = (end >> 8)  & 0xFF;
     eb = (end)       & 0xFF;
-    console.log(cr, cg, cb);
 
     //shiftr, shiftg, shiftb
     shiftr = (er > sr) ? 1 : -1;
@@ -283,7 +282,6 @@ function randomColor()
     shiftr = (er > sr) ? 1 : -1;
     shiftg = (eg > sg) ? 1 : -1;
     shiftb = (eb > sb) ? 1 : -1;
-    console.log(cr, cg, cb);
 }
 
 function configureCanvas(){
