@@ -25,7 +25,6 @@ var sr, sg, sb, er, eg, eb, cr, cg, cb, shiftr, shiftg, shiftb;
 var count = 0;
 var finish;
 
-console.log("hello 1");
 //index script
 $(document).ready(function(){
 
@@ -340,6 +339,6 @@ function loop(r){
         }
       }
       loop();
-  }, r.get('rate')); //ractive.get...
+  }, 0); //ractive.get... r.get('rate')
 }
 })();
