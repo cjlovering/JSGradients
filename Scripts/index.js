@@ -72,6 +72,31 @@ $(document).ready(function(){
 //when pause increase rate, and playing to false
 //when play, reset rate, and playing to true
 
+/** CLASSES **/
+function Pixel(fromX, fromY) {
+    this.fromX = fromX;
+    this.fromY = fromY;
+    this.r = 0;
+    this.g = 0;
+    this.b = 0;
+
+    this.Draw = function(x, y){
+        this.r = cr;
+        this.g = cg;
+        this.b = cb;
+        ctx.fillStyle = nextColor();
+        ctx.fillRect(x,y,1,1);
+    }
+
+    this.FromXX = function(x){ this.fromX = x;}
+    this.FromYY = function(y){ this.fromY = y;}
+    this.FromX =  function(){ return this.fromX;}
+    this.FromY =  function(){ return this.fromY;}
+    this.FromR =  function(){ return this.r;}
+    this.FromG =  function(){ return this.g;}
+    this.FromB =  function(){ return this.b;}
+}
+
 /** FUNCTIONS **/
 function paint() {
     var p = new Pixel(xposition, yposition);
