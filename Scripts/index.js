@@ -7,6 +7,8 @@ var RAND = {
 };
 
 /** VARS **/
+var ractive;
+
 var canvas, ctx;
 var pixels;
 var width, height;       //create stars
@@ -32,7 +34,7 @@ $(document).ready(function(){
   /** RACTIVE CONTROLS **/
   $.get( 'Scripts/template.html' ).then( function ( template ) {
     console.log("hello 3");
-    var ractive = new Ractive({
+    ractive = new Ractive({
       el: '#template-container',
 
       template: template,
@@ -57,7 +59,7 @@ $(document).ready(function(){
       ctx = canvas.getContext('2d');
       configureCanvas();
       configureColor(start, end);
-      loop(ractive);
+      loop();
     } else console.log("Canvas context not found");
                 
 
@@ -320,10 +322,10 @@ function configureCanvas(){
   return p;
 }
 
-function loop(r){
-  var timer = setTimeout(function(r){
+function loop(){
+  var timer = setTimeout(function(){
       //if r is playing
-      if (r.get('playing')){ //
+      if (ractive.get('playing')){ //
         for(var i = 0; i < boost; i++)
         {
             paint();
@@ -339,7 +341,7 @@ function loop(r){
             }
         }
       }
-      loop(r);
-  }, 0); //ractive.get... r.get('rate')
+      loop();
+  }, ractive.get('rate')); //ractive.get... r.get('rate')
 }
 })();
