@@ -324,7 +324,7 @@ function loop(){
       //if r is playing
 
       if (ractive.get('playing')){ //
-        for(var i = 0; i < (ractive.get('boost') < 20 ? ractive.get('boost') : (ractive.get('boost') * 100)); i++)
+        for(var i = 0; i < (ractive.get('boost') < 20 ? ractive.get('boost') : (ractive.get('boost') * 25)); i++)
         {
             paint();
             count += 1;
