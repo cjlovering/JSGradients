@@ -1,3 +1,4 @@
+(function(){
 /** ENUMS **/
 var RAND = {
   LEFT : {value: 0, name: "Small", code: "S"}, 
@@ -61,67 +62,10 @@ $(document).ready(function(){
                 
 
     /** Ractive Responses to User Input **/
-    ractive.on({
-     togglePlay: function ( event ) {
-        var n = ractive.get("current_script");
-        if (n == 0) n = 1;
-        else if (n == 1) n = 2
-        else n = 0;
-
-        ractive.set( 'current_script', n);
-     },
-     nextSong: function ( event ) {
-          var n = ractive.get("current_playlist");
-          var l = ractive.get('playlists').length;
-          n += 1;
-          if (n == l) {
-            n = 0;
-          }
-
-          ractive.set( 'current_playlist', null ).then( function () {
-          ractive.set( 'current_playlist', n );
-        })
-      },
-      prevSong: function ( event ) {
-          var n = ractive.get("current_playlist");
-          n -= 1;
-          if (n < 0) {
-            var l = ractive.get('playlists').length;
-            n = l - 1;
-          }
-          ractive.set( 'current_playlist', null ).then( function () {
-          ractive.set( 'current_playlist', n );
-        })
-      },
-      showProject: function ( event, which ) {
-        ractive.set( 'current_project', null ).then( function () {
-          ractive.set( 'current_project', which );
-        })
-      },
-      next: function ( event ) {
-          var n = ractive.get("current_project");
-          var l = ractive.get('projects').length;
-          n += 1;
-          if (n == l) {
-            n = 0;
-          }
-
-          ractive.set( 'current_project', null ).then( function () {
-          ractive.set( 'current_project', n );
-        })
-      },
-      prev: function ( event ) {
-          var n = ractive.get("current_project");
-          n -= 1;
-          if (n < 0) {
-            var l = ractive.get('projects').length;
-            n = l - 1;
-          }
-          ractive.set( 'current_project', null ).then( function () {
-          ractive.set( 'current_project', n );
-        })
-      }
-    });
+    // ractive.on({
+     
+    //   }
+    // });
   });
 });
 
@@ -352,24 +296,25 @@ function configureCanvas(){
 }
 
 function loop(r){
-                var timer = setTimeout(function(){
-                    //if r is playing
-                    if (r.get('playing')){ 
-                      for(var i = 0; i < boost; i++)
-                      {
-                          paint();
-                          count += 1;
-                          if (count >= finish){
-                              ctx.clearRect(0, 0, width, height);
-                              randomColor();
-                              //configureColor('43cea2', '000FFF');//'43cea2', '000FFF'
+  var timer = setTimeout(function(){
+      //if r is playing
+      if (r.get('playing')){ 
+        for(var i = 0; i < boost; i++)
+        {
+            paint();
+            count += 1;
+            if (count >= finish){
+                ctx.clearRect(0, 0, width, height);
+                randomColor();
+                //configureColor('43cea2', '000FFF');//'43cea2', '000FFF'
 
-                              configureCanvas();
-                              count = 1;
-                              break;
-                          }
-                      }
-                    }
-                    loop();
-                }, r.get('rate')); //ractive.get...
+                configureCanvas();
+                count = 1;
+                break;
             }
+        }
+      }
+      loop();
+  }, r.get('rate')); //ractive.get...
+}
+})();
