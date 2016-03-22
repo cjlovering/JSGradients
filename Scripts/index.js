@@ -30,10 +30,8 @@ var finish;
 //index script
 $(document).ready(function(){
 
-  console.log("hello 2");
   /** RACTIVE CONTROLS **/
   $.get( 'Scripts/template.html' ).then( function ( template ) {
-    console.log("hello 3");
     ractive = new Ractive({
       el: '#template-container',
 
@@ -49,8 +47,6 @@ $(document).ready(function(){
         rate  : 1
       }
     });
-
-    console.log(ractive.get('start'));
 
     canvas = document.getElementById('pixelMap');
                
