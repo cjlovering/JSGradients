@@ -323,7 +323,7 @@ function loop(){
   var timer = setTimeout(function(){
       //if r is playing
       if (ractive.get('playing')){ //
-        for(var i = 0; i < boost; i++)
+        for(var i = 0; i < ractive.get('boost'); i++)
         {
             paint();
             count += 1;
