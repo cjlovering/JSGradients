@@ -25,14 +25,14 @@ var sr, sg, sb, er, eg, eb, cr, cg, cb, shiftr, shiftg, shiftb;
 var count = 0;
 var finish;
 
-
+console.log("hello 1");
 //index script
 $(document).ready(function(){
 
-
+  console.log("hello 2");
   /** RACTIVE CONTROLS **/
   $.get( 'Scripts/template.html' ).then( function ( template ) {
-
+    console.log("hello 3");
     var ractive = new Ractive({
       el: '#template-container',
 
