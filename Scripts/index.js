@@ -48,6 +48,7 @@ $(document).ready(function(){
       }
     });
 
+    console.log(ractive.get('start'));
 
     canvas = document.getElementById('pixelMap');
                
