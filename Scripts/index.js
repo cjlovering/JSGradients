@@ -57,7 +57,8 @@ $(document).ready(function(){
       configureCanvas();
       configureColor(start, end);
       loop(ractive);
-    }
+    } else console.log("Canvas context not found");
+                
 
     /** Ractive Responses to User Input **/
     ractive.on({
