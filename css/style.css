@@ -17,11 +17,11 @@ canvas {
 .floater {
     position: fixed;
     bottom: 5%;
-    left: 5%;
+    width: 25%;
     right: 5%;
-    background-color: blue;
-    opacity: .7;
-    height: 50px;
+    background-color: grey;
+    opacity: .8;
+    height: 150px;
     border-radius: 5px 5px 5px 5px;
     z-index: 1;
 }

@@ -1,4 +1,15 @@
 <canvas id="pixelMap"></canvas>
 <div class = "floater">
 	<input id="slider" type="range" min="1" max="1000" step="5" value="500"/>
+	<label>
+  <input type='checkbox' checked='{{checked}}'>
+  {{#if checked}}checked!{{else}}not checked{{/if}}
+</label>
+
+<fieldset>
+  <label><input type='radio' name='{{color}}' value='red' checked> red</label>
+  <label><input type='radio' name='{{color}}' value='green'> green</label>
+  <label><input type='radio' name='{{color}}' value='blue'> blue</label>
+  <p>The selected colour is <span style='color: {{color}};'>{{color}}</span>.</p>
+</fieldset>
 </div>
