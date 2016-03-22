@@ -320,9 +320,9 @@ function configureCanvas(){
 }
 
 function loop(r){
-  var timer = setTimeout(function(){
+  var timer = setTimeout(function(r){
       //if r is playing
-      if (true){ //r.get('playing')
+      if (r.get('playing')){ //
         for(var i = 0; i < boost; i++)
         {
             paint();
