@@ -48,7 +48,7 @@ $(document).ready(function(){
       }
     });
 
-    var slider = $.("slider").value;
+    var slider = $.("#slider").value;
     console.log(slider);
 
     canvas = document.getElementById('pixelMap');
