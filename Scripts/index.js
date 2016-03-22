@@ -18,8 +18,6 @@ var ffx, ffy;
 var tx, ty;
 
 
-var boost = 500;
-
 var start = '0000FF';
 var end   = '88FF00';
 var sr, sg, sb, er, eg, eb, cr, cg, cb, shiftr, shiftg, shiftb;
@@ -41,7 +39,7 @@ $(document).ready(function(){
         playing : true,
         cover: true,
         random : RAND.LEFT,
-        boost : 500,
+        boost : 35,
         start : '0000FF',
         end   : '88FF00',
         rate  : 1
