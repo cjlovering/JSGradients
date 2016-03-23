@@ -15,7 +15,6 @@ canvas {
     z-index: 0;
 }
 .floater {
-    position: fixed;
     bottom: 5%;
     width: 25%;
     right: 5%;
