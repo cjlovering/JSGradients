@@ -236,7 +236,7 @@ function nextColor()
         // cg = sg;
         // cb = sb;
     }
-    return rgb(Math.floor(cr), Math.floor(cg), Math.floor(cb);
+    return rgb(Math.floor(cr), Math.floor(cg), Math.floor(cb));
 }
 
 function rgb(r, g, b) { return ["rgb(",r,",",g,",",b,")"].join(""); }
