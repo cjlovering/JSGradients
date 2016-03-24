@@ -42,6 +42,7 @@ $(document).ready(function(){
         boost : 35,
         start : '0000FF',
         end   : '88FF00',
+        increment: .33,
         rate  : 1
       }
     });
@@ -214,23 +215,28 @@ function nextColor()
     //to start we'll one at a time
     if (cr != er)
     {
-        cr += shiftr;
+        cr += ractive.get('increment') * shiftr;
     }
     else if (cg != eg) 
     {
-        cg += shiftg;
+        cg += ractive.get('increment') * shiftg;
     }
     else if (cb != eb)
     {
-        cb += shiftb;                    
+        cb += ractive.get('increment') *  shiftb;                    
     }
     else
     {
-        cr = sr;
-        cg = sg;
-        cb = sb;
+        /* flip start and end */
+        var temp = start;
+        start = end;
+        end = start;
+        configureColor(start, end);
+        // cr = sr;
+        // cg = sg;
+        // cb = sb;
     }
-    return rgb(cr, cg, cb);
+    return rgb(Math.floor(cr), Math.floor(cg), Math.floor(cb);
 }
 
 function rgb(r, g, b) { return ["rgb(",r,",",g,",",b,")"].join(""); }
