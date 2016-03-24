@@ -228,13 +228,13 @@ function nextColor()
     else
     {
         /* flip start and end */
-        var temp = start;
-        start = end;
-        end = start;
-        configureColor(start, end);
-        // cr = sr;
-        // cg = sg;
-        // cb = sb;
+        // var temp = start;
+        // start = end;
+        // end = start;
+        // configureColor(start, end);
+        cr = sr;
+        cg = sg;
+        cb = sb;
     }
     return rgb(Math.floor(cr), Math.floor(cg), Math.floor(cb));
 }
