@@ -209,19 +209,20 @@ function setValidLocation(p) {
   } 
 }
 
+function floor(i){ return i | 0; }
 
 function nextColor()
 {
     //to start we'll one at a time
-    if (cr != er)
+    if (floor(cr) != er)
     {
         cr += ractive.get('increment') * shiftr;
     }
-    else if (cg != eg) 
+    else if (floor(cg) != eg) 
     {
         cg += ractive.get('increment') * shiftg;
     }
-    else if (cb != eb)
+    else if (floor(cb) != eb)
     {
         cb += ractive.get('increment') *  shiftb;                    
     }
@@ -236,7 +237,7 @@ function nextColor()
         cg = sg;
         cb = sb;
     }
-    return rgb(Math.floor(cr), Math.floor(cg), Math.floor(cb));
+    return rgb(floor(cr), floor(cg), floor(cb));
 }
 
 function rgb(r, g, b) { return ["rgb(",r,",",g,",",b,")"].join(""); }
