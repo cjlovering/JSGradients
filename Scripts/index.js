@@ -42,7 +42,7 @@ $(document).ready(function(){
         boost : 35,
         start : '0000FF',
         end   : '88FF00',
-        increment: 4,
+        increment: 1,
         rate  : 1
       }
     });
