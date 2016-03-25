@@ -237,7 +237,7 @@ function nextColor()
         //cg = sg;
         //cb = sb;
     }
-    console.log(cr, cg, cb, shiftr, shiftb, shiftg);
+  
     return rgb(floor(cr), floor(cg), floor(cb));
 }
 
@@ -301,8 +301,7 @@ function configureCanvas(){
   height = h;
 
   finish = width * height;
-  //width = canvas.width;
-  //height = canvas.height;
+
   pixels = [];
   for ( var i = 0; i < width; i++) pixels[i] = Array(height);
   for ( var i = 0; i < width; i++){
@@ -342,8 +341,6 @@ function loop(){
             if (count >= finish){
                 ctx.clearRect(0, 0, height, width);
                 randomColor();
-                //configureColor('43cea2', '000FFF');//'43cea2', '000FFF'
-
                 configureCanvas();
                 count = 1;
                 break;
