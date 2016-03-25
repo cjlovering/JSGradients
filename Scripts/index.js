@@ -237,6 +237,7 @@ function nextColor()
         cg = sg;
         cb = sb;
     }
+    console.log(cr, cg, cb, shiftr, shiftb, shiftg);
     return rgb(floor(cr), floor(cg), floor(cb));
 }
 
