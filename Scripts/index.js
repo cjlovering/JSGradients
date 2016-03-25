@@ -39,10 +39,10 @@ $(document).ready(function(){
         playing : true,
         cover: true,
         random : RAND.LEFT,
-        boost : 35,
+        boost : 5,
         start : '0000FF',
         end   : '88FF00',
-        increment: 1,
+        increment: 0.02,
         rate  : 1
       }
     });
@@ -189,9 +189,9 @@ function setValidLocation(p) {
       {
           xx = pp.FromX();
           yy = pp.FromY();
-          cr = pp.FromR();
-          cb = pp.FromB();
-          cg = pp.FromG();
+          //cr = pp.FromR();
+          //cb = pp.FromB();
+          //cg = pp.FromG();
           if (xx == ffx && yy == ffy)
           {
               xposition = Math.floor(width  * Math.random());
