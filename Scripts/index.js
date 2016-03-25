@@ -337,7 +337,7 @@ function loop(){
             paint();
             count += 1;
             if (count >= finish){
-                ctx.clearRect(0, 0, width, height);
+                ctx.clearRect(0, 0, height, width);
                 randomColor();
                 //configureColor('43cea2', '000FFF');//'43cea2', '000FFF'
 
