@@ -318,6 +318,9 @@ function configureCanvas(){
   var p = new Pixel(xposition, yposition);
   var c = 0;
 
+  ctx.fillStyle = rgba(255, 255, 255, 0.2)
+  ctx.fillRect(0,0,height,width);
+
   pixels[xposition][yposition] = p;
   p.Draw(xposition, yposition);
 

@@ -7,6 +7,7 @@ html, body {
 	-o-background-size: cover;
 	background-size: cover;
 	background-color: black;
+	color: rgba(255, 75, 75, 1);
 	margin: 0px;	
 }
 canvas { 
@@ -20,7 +21,7 @@ canvas {
     bottom: 5%;
     width: 25%;
     right: 5%;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(255, 255, 255, 0.2);
     height: 150px;
     border-radius: 5px 5px 5px 5px;
     z-index: 1;
