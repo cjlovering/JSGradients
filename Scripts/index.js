@@ -189,9 +189,9 @@ function setValidLocation(p) {
       {
           xx = pp.FromX();
           yy = pp.FromY();
-          //cr = pp.FromR();
-          //cb = pp.FromB();
-          //cg = pp.FromG();
+          cr = pp.FromR();
+          cb = pp.FromB();
+          cg = pp.FromG();
           if (xx == ffx && yy == ffy)
           {
               xposition = Math.floor(width  * Math.random());
@@ -232,10 +232,10 @@ function nextColor()
         // var temp = start;
         // start = end;
         // end = start;
-        // configureColor(start, end);
-        cr = sr;
-        cg = sg;
-        cb = sb;
+        configureColor(end, start);
+        //cr = sr;
+        //cg = sg;
+        //cb = sb;
     }
     console.log(cr, cg, cb, shiftr, shiftb, shiftg);
     return rgb(floor(cr), floor(cg), floor(cb));
