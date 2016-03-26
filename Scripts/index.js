@@ -11,7 +11,7 @@ var ractive;
 
 var canvas, ctx;
 var pixels;
-var width, height;       //create stars
+var width, height; 
 var count = 0;
 var xposition, yposition;
 var ffx, ffy;
@@ -38,11 +38,11 @@ $(document).ready(function(){
       data: { 
         playing : true,
         cover: true,
-        random : RAND.LEFT,
-        boost : 5,
+        random : RAND.NORM,
+        boost : 15,
         start : '0000FF',
         end   : '88FF00',
-        increment: 0.02,
+        increment: 0.10,
         rate  : 1
       }
     });
@@ -62,10 +62,11 @@ $(document).ready(function(){
                 
 
     /** Ractive Responses to User Input **/
-    // ractive.on({
-     
-    //   }
-    // });
+    ractive.on({
+      toggleplay: function ( event ) {
+        ractive.toggle('playing');
+     }
+    });
   });
 });
 
@@ -141,8 +142,8 @@ function setValidLocation(p) {
 
 
       if ( openspots.length > 0 ){
-          r = openspots[Math.floor((Math.random() * openspots.length))];
-       
+          if () r = openspots[Math.floor((Math.random() * openspots.length))];
+          if ()
           switch(r)
           {
               case 0:
