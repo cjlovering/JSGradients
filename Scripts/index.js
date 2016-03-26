@@ -351,22 +351,23 @@ function configureCanvas(){
 }
 
 function fadeOut(){
-  while(count > 0)
-  {
-    var p = pixels[xposition][yposition];
-    count -= 1;
+  var timer = setTimeout(function(){
+      //if r is playing
+      var p = pixels[xposition][yposition];
+      count -= 1;
+      ctx.fillStyle = 'black';
+      ctx.fillRect(xposition,yposition,1,1);
     
-
-    ctx.fillStyle = 'black';
-    ctx.fillRect(xposition,yposition,1,1);
-    
-    xposition = p.FromX();
-    yposition = p.FromY();
-    //while(true)
-    //{
-    //}   
-  }
+      xposition = p.FromX();
+      yposition = p.FromY();
+     
+      count -= 1;
+      if (count == 0)
+        return;
+      else loop();
+  }, ractive.get('rate') * ractive.get('boost')); //ractive.get... r.get('rate')
 }
+
 
 function loop(){
   var timer = setTimeout(function(){
