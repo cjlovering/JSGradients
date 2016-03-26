@@ -364,8 +364,8 @@ function fadeOut(){
       count -= 1;
       if (count == 0)
         return;
-      else loop();
-  }, ractive.get('rate') * ractive.get('boost')); //ractive.get... r.get('rate')
+      else fadeOut();
+  }, ractive.get('rate')); //ractive.get... r.get('rate')
 }
 
 
