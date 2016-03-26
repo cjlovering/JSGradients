@@ -362,8 +362,7 @@ function fadeOut(){
       yposition = p.FromY();
      
       count -= 1;
-      if (count == 0)
-        return;
+      if (count == 0) { return;
       else fadeOut();
   }, 100); //ractive.get... r.get('rate')
 }
@@ -381,7 +380,7 @@ function loop(){
             if (count >= finish){
                 ctx.clearRect(0, 0, height, width);
                 randomColor();
-                fadeOut();
+                //fadeOut();
                 configureCanvas();
                 count = 1;
                 break;
