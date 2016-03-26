@@ -230,8 +230,9 @@ function nextColor()
         // var temp = start;
         // start = end;
         // end = start;
-        ractive.set('end', start);
-        ractive.set('start', end);
+        var swap = ractive.get('end');
+        ractive.set('end', ractive.get('start'));
+        ractive.set('start', swap);
         configureColor();
         //cr = sr;
         //cg = sg;
