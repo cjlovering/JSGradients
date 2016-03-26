@@ -142,8 +142,8 @@ function setValidLocation(p) {
 
 
       if ( openspots.length > 0 ){
-          if () r = openspots[Math.floor((Math.random() * openspots.length))];
-          if ()
+          r = openspots[Math.floor((Math.random() * openspots.length))];
+         // if ()
           switch(r)
           {
               case 0:
