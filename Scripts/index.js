@@ -350,6 +350,24 @@ function configureCanvas(){
   return p;
 }
 
+function fadeOut(){
+  while(count > 0)
+  {
+    var p = pixels[xposition][yposition];
+    count -= 1;
+    
+
+    ctx.fillStyle = 'black';
+    ctx.fillRect(xposition,yposition,1,1);
+    
+    xposition = p.FromX();
+    yposition = p.FromY();
+    //while(true)
+    //{
+    //}   
+  }
+}
+
 function loop(){
   var timer = setTimeout(function(){
       //if r is playing
@@ -362,6 +380,7 @@ function loop(){
             if (count >= finish){
                 ctx.clearRect(0, 0, height, width);
                 randomColor();
+                fadeOut();
                 configureCanvas();
                 count = 1;
                 break;
