@@ -362,7 +362,7 @@ function fadeOut(){
       yposition = p.FromY();
      
       count -= 1;
-      if (count == 0) { return;
+      if (count == 0) { return; }
       else fadeOut();
   }, 100); //ractive.get... r.get('rate')
 }
