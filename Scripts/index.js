@@ -17,9 +17,6 @@ var xposition, yposition;
 var ffx, ffy;
 var tx, ty;
 
-
-var start = '0000FF';
-var end   = '88FF00';
 var sr, sg, sb, er, eg, eb, cr, cg, cb, shiftr, shiftg, shiftb;
 
 var count = 0;
@@ -56,7 +53,7 @@ $(document).ready(function(){
     {
       ctx = canvas.getContext('2d');
       configureCanvas();
-      configureColor(start, end);
+      configureColor();
       loop();
     } else console.log("Canvas context not found");
                 
@@ -244,22 +241,22 @@ function nextColor()
 
 function rgb(r, g, b) { return ["rgb(",r,",",g,",",b,")"].join(""); }
 
-function configureColor(start, end)
+function configureColor()
 {
-    start = parseInt(start, 16);
-    end   = parseInt(end, 16);
+    var s = parseInt(ractive.get('start'), 16);
+    var e = parseInt(ractive.get('end'), 16);
     //sr, sg, sb
-    sr = (start >> 16) & 0xFF;
-    sg = (start >> 8)  & 0xFF;
-    sb = (start)       & 0xFF;
+    sr = (s >> 16) & 0xFF;
+    sg = (s >> 8)  & 0xFF;
+    sb = (s)       & 0xFF;
     //cr, cg. cb
     cr = sr;
     cg = sg;
     cb = sb;
     //er, eb, eg
-    er = (end >> 16) & 0xFF;
-    eg = (end >> 8)  & 0xFF;
-    eb = (end)       & 0xFF;
+    er = (e >> 16) & 0xFF;
+    eg = (e >> 8)  & 0xFF;
+    eb = (e)       & 0xFF;
 
     //shiftr, shiftg, shiftb
     shiftr = (er > sr) ? 1 : -1;
