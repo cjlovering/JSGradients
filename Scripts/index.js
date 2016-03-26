@@ -230,10 +230,11 @@ function nextColor()
         // var temp = start;
         // start = end;
         // end = start;
-        var swap = ractive.get('end');
-        ractive.set('end', ractive.get('start'));
-        ractive.set('start', swap);
-        configureColor();
+        // var swap = ractive.get('end');
+        // ractive.set('end', ractive.get('start'));
+        // ractive.set('start', swap);
+        // configureColor();
+        reverseColor();
         //cr = sr;
         //cg = sg;
         //cb = sb;
@@ -243,6 +244,25 @@ function nextColor()
 }
 
 function rgb(r, g, b) { return ["rgb(",r,",",g,",",b,")"].join(""); }
+
+function reverseColor()
+{
+  var tempR = sr;
+  var tempG = sg;
+  var tempB = sb;
+  sr = er;
+  sg = eg;
+  sb = eb;
+  cr = sr;
+  cg = sg;
+  cb = sb;
+  er = tempR;
+  eg = tempG;
+  eb = tempB;
+  shiftr = (-1) * shiftr;
+  shiftg = (-1) * shiftg;
+  shiftb = (-1) * shiftb;
+}
 
 function configureColor()
 {
