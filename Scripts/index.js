@@ -230,7 +230,9 @@ function nextColor()
         // var temp = start;
         // start = end;
         // end = start;
-        configureColor(ractive.get('end'), ractive.get('start'));
+        ractive.set('end', start);
+        ractive.set('start', end);
+        configureColor();
         //cr = sr;
         //cg = sg;
         //cb = sb;
@@ -241,13 +243,10 @@ function nextColor()
 
 function rgb(r, g, b) { return ["rgb(",r,",",g,",",b,")"].join(""); }
 
-function configureColor(start, end)
+function configureColor()
 {
-    ractive.set('start', start);
-    ractive.set('end', end);
-
-    var s = parseInt(start, 16);
-    var e = parseInt(end, 16);
+    var s = parseInt(ractive.get('start'),  16);
+    var e = parseInt(ractive.get('end'), 16);
     //sr, sg, sb
     sr = (s >> 16) & 0xFF;
     sg = (s >> 8)  & 0xFF;
