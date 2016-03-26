@@ -352,9 +352,9 @@ function configureCanvas(){
 
 function fadeOut(){
   var timer = setTimeout(function(){
+    console.log("fading");
       //if r is playing
       var p = pixels[xposition][yposition];
-      count -= 1;
       ctx.fillStyle = 'black';
       ctx.fillRect(xposition,yposition,1,1);
     
