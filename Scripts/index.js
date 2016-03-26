@@ -365,7 +365,7 @@ function fadeOut(){
       if (count == 0)
         return;
       else fadeOut();
-  }, ractive.get('rate')); //ractive.get... r.get('rate')
+  }, 100); //ractive.get... r.get('rate')
 }
 
 
