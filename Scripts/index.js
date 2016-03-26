@@ -52,7 +52,7 @@ $(document).ready(function(){
     if (canvas.getContext)
     {
       ctx = canvas.getContext('2d');
-      configureCanvas();
+      configureCanvas(ractive.get('start'), ractive.get('end'));
       configureColor();
       loop();
     } else console.log("Canvas context not found");
@@ -230,7 +230,7 @@ function nextColor()
         // var temp = start;
         // start = end;
         // end = start;
-        configureColor(end, start);
+        configureColor(ractive.get('end'), ractive.get('start'));
         //cr = sr;
         //cg = sg;
         //cb = sb;
@@ -241,10 +241,13 @@ function nextColor()
 
 function rgb(r, g, b) { return ["rgb(",r,",",g,",",b,")"].join(""); }
 
-function configureColor()
+function configureColor(start, end)
 {
-    var s = parseInt(ractive.get('start'), 16);
-    var e = parseInt(ractive.get('end'), 16);
+    ractive.set('start', start);
+    ractive.set('end', end);
+
+    var s = parseInt(start, 16);
+    var e = parseInt(end, 16);
     //sr, sg, sb
     sr = (s >> 16) & 0xFF;
     sg = (s >> 8)  & 0xFF;
