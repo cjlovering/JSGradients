@@ -6,7 +6,7 @@ html, body {
 	-moz-background-size: cover;
 	-o-background-size: cover;
 	background-size: cover;
-	background-color: black;
+	background-color: white;
 	color: rgba(255, 75, 75, 1);
 	margin: 0px;	
 }
@@ -21,6 +21,7 @@ canvas {
     bottom: 5%;
     width: 25%;
     right: 5%;
+    font-style: orange;
     background-color: rgba(230, 230, 230, 0.35);
     height: 150px;
     border-radius: 5px 5px 5px 5px;
