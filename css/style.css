@@ -7,7 +7,7 @@ html, body {
 	-o-background-size: cover;
 	background-size: cover;
 	background-color: white;
-	color: rgba(255, 75, 75, 1);
+	color: white;
 	margin: 0px;	
 }
 canvas { 
