@@ -6,8 +6,7 @@ html, body {
 	-moz-background-size: cover;
 	-o-background-size: cover;
 	background-size: cover;
-	background-color: black;
-	color: rgba(255, 75, 75, 1);
+	background-color: white;
 	margin: 0px;	
 }
 canvas { 
