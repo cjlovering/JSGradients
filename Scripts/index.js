@@ -118,7 +118,7 @@ function drag_over(event) {
 } 
 function drop(event) { 
     var offset = event.dataTransfer.getData("text/plain").split(',');
-    var dm = document.getElementById('dragme');
+    var dm = document.getElementById('ffloater');
     dm.style.left = (event.clientX + parseInt(offset[0],10)) + 'px';
     dm.style.top = (event.clientY + parseInt(offset[1],10)) + 'px';
     event.preventDefault();
