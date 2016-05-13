@@ -65,9 +65,10 @@ $(document).ready(function(){
     /* dragging of floater */
     var dm = document.getElementById('ffloater'); 
     dm.addEventListener('dragstart',drag_start,false); 
-    document.body.addEventListener('dragover',drag_over,false); 
-    document.body.addEventListener('drop',drop,false);
-    
+    //  document.body.addEventListener('dragover',drag_over, false); 
+    //document.body.addEventListener('drop',drop,false);
+    canvas.addEventListener('dragover',drag_over,false); 
+    canvas.addEventListener('drop',drop,false);    
     /** Ractive Responses to User Input **/
     ractive.on({
       toggleplay: function ( event ) {
