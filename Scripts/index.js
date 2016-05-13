@@ -101,6 +101,17 @@ function Pixel(fromX, fromY) {
     this.FromB =  function(){ return this.b;}
 }
 
+/** FLOATER FUNCTIONS **/
+function drag(ev) {
+    ev.dataTransfer.setData("text", ev.target.id);
+}
+function drop(ev) {
+    ev.preventDefault();
+    var data = ev.dataTransfer.getData("text");
+    ev.target.appendChild(document.getElementById(data));
+}
+
+
 /** FUNCTIONS **/
 function paint() {
     var p = new Pixel(xposition, yposition);

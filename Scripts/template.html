@@ -1,6 +1,6 @@
 <canvas id="pixelMap"></canvas>
 {{#if visible}}
-<div class = "floater">
+<div class = "floater" ondrop="drop(event)" ondragover="allowDrop(event)">
 	<input id="slider" type="range" min="1" max="100" step="1" value="{{boost}}"/>
 	<span>{{boost}}</span>
 
