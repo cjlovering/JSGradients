@@ -107,6 +107,7 @@ function Pixel(fromX, fromY) {
 }
 
 /** FLOATER FUNCTIONS **/
+/*
 function drag_start(event) {
     var style = window.getComputedStyle(event.target, null);
     event.dataTransfer.setData("text/plain",
@@ -124,7 +125,7 @@ function drop(event) {
     event.preventDefault();
     return false;
 } 
-
+*/
 
 /** FUNCTIONS **/
 function paint() {
