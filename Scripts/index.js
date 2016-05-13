@@ -40,7 +40,8 @@ $(document).ready(function(){
         start : '0000FF',
         end   : '88FF00',
         increment: 0.10,
-        rate  : 1
+        rate  : 1,
+	visible : false
       }
     });
 
@@ -57,7 +58,12 @@ $(document).ready(function(){
       loop();
     } else console.log("Canvas context not found");
                 
+    canvas.addEventListener("dblclick", function(eventInfo){
+	    ractive.toggle("visible");
+	});
 
+
+    
     /** Ractive Responses to User Input **/
     ractive.on({
       toggleplay: function ( event ) {
